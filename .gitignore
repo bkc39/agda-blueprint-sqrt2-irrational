@@ -1,0 +1,17 @@
+# Agda
+_build/
+*.agdai
+MAlonzo/
+
+# Blueprint build output
+blueprint/web/
+blueprint/print/
+blueprint/agda_decls
+*.paux
+
+# Nix
+result
+result-*
+
+# macOS
+.DS_Store

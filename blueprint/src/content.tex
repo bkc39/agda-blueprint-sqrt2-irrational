@@ -1,0 +1,43 @@
+% Blueprint for "√2 is irrational". Our two results (\agdaok) sit on top of
+% Shinji Kono's upstream proof (\stdlibok — it lives in the automaton-in-agda
+% dependency library): we specialize his general "no rational squares to a
+% prime" theorem to p = 2 by proving that 2 is prime.
+
+\section{Upstream: no rational squares to a prime}
+
+These come from Shinji Kono's \texttt{automaton-in-agda} (module \texttt{root2}),
+which we depend on as an Agda library.
+
+\begin{definition}[Rational]\label{def:rational}
+  \agda{root2.Rational}\stdlibok
+  A rational number, represented as a numerator/denominator pair with positive
+  denominator.
+\end{definition}
+
+\begin{definition}[Squaring a rational]\label{def:rational-mul}\uses{def:rational}
+  \agda{root2.Rational*}\stdlibok
+  Multiplication of rationals; $r \cdot r$ is the square of $r$.
+\end{definition}
+
+\begin{theorem}[$\sqrt{p}$ is irrational for prime $p$]\label{thm:rpi}\uses{def:rational,def:rational-mul}
+  \agda{root2.root-prime-irrational1}\stdlibok
+  For every prime $p$ there is no rational $r$ with $r \cdot r = p$.
+\end{theorem}
+
+\section{Our specialization: $p = 2$}
+
+\begin{lemma}[$2$ is prime]\label{lem:prime2}
+  \agda{Sqrt2.prime2}\agdaok
+  $2$ is prime: the only $j$ with $0 < j < 2$ is $j = 1$, and $\gcd(2,1) = 1$.
+\end{lemma}
+
+\begin{theorem}[$\sqrt{2}$ is irrational]\label{thm:sqrt2}\uses{thm:rpi,lem:prime2}
+  \agda{Sqrt2.sqrt2-irrational}\agdaok
+  There is no rational $r$ with $r \cdot r = 2$. Equivalently, no naturals
+  $a, b$ with $b \neq 0$ satisfy $2\,b^2 = a^2$; hence $\sqrt{2}$ is irrational.
+\end{theorem}
+
+\begin{proof}\uses{thm:rpi,lem:prime2}
+  Immediate: instantiate Theorem~\ref{thm:rpi} at $p = 2$ using
+  Lemma~\ref{lem:prime2}.
+\end{proof}

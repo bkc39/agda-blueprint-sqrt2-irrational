@@ -1,0 +1,67 @@
+{
+  "nodes": {
+    "agdablueprint": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1780280527,
+        "narHash": "sha256-9g9U5mErqGCijJ7twRo7UZgYyHCM9iSKpepxyCXHHMY=",
+        "owner": "bkc39",
+        "repo": "agdablueprint",
+        "rev": "8c48e4af51f028184926076a78aa64613b77ffa9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bkc39",
+        "ref": "phase-4-cli-and-e2e",
+        "repo": "agdablueprint",
+        "type": "github"
+      }
+    },
+    "automaton": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767401340,
+        "narHash": "sha256-zjVHdXWtD3aGmVeNj4BY4o64ZiDb5zMBNu5fOA69EAI=",
+        "owner": "shinji-kono",
+        "repo": "automaton-in-agda",
+        "rev": "5238895d52e9cf29e588a9732a09317333205bf3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "shinji-kono",
+        "repo": "automaton-in-agda",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1779560665,
+        "narHash": "sha256-tpyBcxPpcQb8ukyNF7DoCwfSY3VPsxHoYwj00Cayv5o=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "agdablueprint": "agdablueprint",
+        "automaton": "automaton",
+        "nixpkgs": [
+          "agdablueprint",
+          "nixpkgs"
+        ]
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

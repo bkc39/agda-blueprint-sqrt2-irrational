@@ -1,0 +1,51 @@
+name: blueprint
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Build the web dependency graph, verify every \agda{...} declaration exists in
+# the Agda project, render the proof to clickable HTML, and publish the result
+# to GitHub Pages. Everything runs inside `nix develop`, which provides
+# agda (+ standard-library + automaton-in-agda), graphviz, texlive's kpsewhich,
+# and the agdablueprint CLI (with plasTeX and the plugin).
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v27
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+      - name: Build dependency graph
+        run: nix develop --command agdablueprint web
+      - name: Check Agda declarations
+        run: nix develop --command agdablueprint checkdecls
+      - name: Render Agda source to HTML
+        # Emit into blueprint/web/agda — the relative \dochome the graph links to.
+        run: nix develop --command agda --html --html-dir=blueprint/web/agda src/Sqrt2.agda
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: blueprint/web
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
