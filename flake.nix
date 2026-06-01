@@ -3,8 +3,7 @@
     "√2 is irrational — an agdablueprint blueprint over Kono's automaton-in-agda proof";
 
   inputs = {
-    # agdablueprint is pinned to the Phase-4 branch until it merges to master.
-    agdablueprint.url = "github:bkc39/agdablueprint/phase-4-cli-and-e2e";
+    agdablueprint.url = "github:bkc39/agdablueprint";
     # Follow agdablueprint's nixpkgs so we get the exact agda-stdlib (2.3) that
     # automaton-in-agda's `.agda-lib` `depend:`s on.
     nixpkgs.follows = "agdablueprint/nixpkgs";

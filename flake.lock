@@ -5,16 +5,15 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1780280527,
+        "lastModified": 1780285936,
         "narHash": "sha256-9g9U5mErqGCijJ7twRo7UZgYyHCM9iSKpepxyCXHHMY=",
         "owner": "bkc39",
         "repo": "agdablueprint",
-        "rev": "8c48e4af51f028184926076a78aa64613b77ffa9",
+        "rev": "93ab508a5e82ac0ced45ab99e64934e9f54cf448",
         "type": "github"
       },
       "original": {
         "owner": "bkc39",
-        "ref": "phase-4-cli-and-e2e",
         "repo": "agdablueprint",
         "type": "github"
       }
